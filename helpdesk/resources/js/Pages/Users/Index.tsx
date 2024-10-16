@@ -1,6 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { User } from '@/types';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, router } from '@inertiajs/react';
 
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/Components/ui/table';
 import { getUserLevelEnumLabel } from '@/types/enums/user-level';
@@ -18,7 +18,9 @@ const headers = [
 ]
 
 export default function UserIndex({ users }: Props) {
-    console.log(users[0].name);
+    async function handleRowClick(user: User) {
+        router.get(route('users.edit', { user: user.id }));
+    }
 
     return (
         <AuthenticatedLayout
@@ -40,7 +42,6 @@ export default function UserIndex({ users }: Props) {
                     </Link>
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                         <Table>
-                            <TableCaption>A list of your recent invoices.</TableCaption>
                             <TableHeader>
                                 <TableRow>
                                     {headers.map((header) => (
@@ -50,7 +51,11 @@ export default function UserIndex({ users }: Props) {
                             </TableHeader>
                             <TableBody>
                                 {users.map((user) => (
-                                    <TableRow key={user.id}>
+                                    <TableRow
+                                        key={user.id}
+                                        onClick={() => handleRowClick(user)}
+                                        className='cursor-pointer hover:bg-gray-100'
+                                    >
                                         <TableCell>{user.name}</TableCell>
                                         <TableCell>{user.email}</TableCell>
                                         <TableCell>{getUserLevelEnumLabel(user.level)}</TableCell>

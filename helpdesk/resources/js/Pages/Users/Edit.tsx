@@ -1,23 +1,29 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { User } from '@/types';
-import { Head, Link } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import UserForm from './Partials/UserForm';
+import { User } from '@/types';
 
-export default function UsersCreate() {
+interface Props {
+    user: User;
+}
+
+export default function UsersCreate({ user }: Props) {
+    console.log(user);
+
     return (
         <AuthenticatedLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Cadastrar Usuário
+                    Editar Usuário {user.name}
                 </h2>
             }
         >
-            <Head title="Cadastrar Usuário" />
+            <Head title="Editar Usuário" />
 
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg p-4">
-                        <UserForm />
+                        <UserForm user={user} />
                     </div>
                 </div>
             </div>

@@ -36,8 +36,8 @@ class UsersController extends Controller
     {
         $data = $request->validated();
         $data['password'] = Hash::make($data['password']);
-        $user = User::create($data);
-        return response()->json($user, 201);
+        User::create($data);
+        return to_route('users.index');
     }
 
     /**
@@ -53,7 +53,9 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return Inertia::render('Users/Edit', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -61,7 +63,12 @@ class UsersController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $data = $request->validated();
+        if (isset($data['password'])) {
+            $data['password'] = Hash::make($data['password']);
+        }
+        $user->update($data);
+        return to_route('users.index');
     }
 
     /**
