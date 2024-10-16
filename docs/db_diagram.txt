@@ -1,0 +1,80 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table user_levels  {
+  level varchar [primary key]
+}
+
+Table categories  {
+  category varchar [primary key]
+}
+
+Table priorities  {
+  priority varchar [primary key]
+}
+
+Table statuses {
+  status varchar [primary key]
+}
+
+Table users {
+  id integer [primary key]
+  name varchar
+  email varchar [unique]
+  password varchar
+  level varchar [default: "user"]
+  created_at timestamp
+  updated_at timestamp
+
+  indexes {
+    id
+    email
+    level
+  }
+}
+
+Table tickets {
+  id integer [primary key]
+  title varchar
+  description string
+  user_id integer
+  agent_id integer [null]
+  category varchar
+  priority varchar
+  status varchar
+  created_at timestamp
+  updated_at timestamp
+
+  indexes {
+    id
+    user_id
+    agent_id
+    category
+    priority
+    status
+  }
+}
+
+Table comments {
+  id integer [primary key]
+  ticket_id integer 
+  user_id integer
+  content text
+  created_at timestamp
+
+  indexes {
+    ticket_id
+    user_id
+  }
+}
+
+Ref: users.level > user_levels.level
+
+Ref: tickets.user_id > users.id
+Ref: tickets.agent_id > users.id
+Ref: tickets.category > categories.category
+Ref: tickets.priority > priorities.priority
+Ref: tickets.status > statuses.status
+
+Ref: comments.ticket_id > tickets.id
+Ref: comments.user_id > users.id
