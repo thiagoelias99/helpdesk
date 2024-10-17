@@ -17,3 +17,10 @@ export function getPriorityEnumLabel(level: PriorityEnum): string {
             return 'Urgente';
     }
 }
+
+export const priorityOptions = Object.keys(PriorityEnum).map((option, index) => {
+    return {
+        value: Object.values(PriorityEnum)[index],
+        key: Object.keys(PriorityEnum)[index]
+    }
+})

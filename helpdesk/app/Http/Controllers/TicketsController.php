@@ -46,7 +46,11 @@ class TicketsController extends Controller
      */
     public function show(Ticket $ticket)
     {
-        //
+        $data = $ticket->with('technician', 'created_by')->first();
+
+        return Inertia::render("Tickets/Show", [
+            "ticket" => $data
+        ]);
     }
 
     /**
@@ -54,7 +58,7 @@ class TicketsController extends Controller
      */
     public function edit(Ticket $ticket)
     {
-        //
+
     }
 
     /**

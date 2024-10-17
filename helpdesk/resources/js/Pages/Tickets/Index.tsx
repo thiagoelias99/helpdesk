@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import { Paginate, Ticket } from '@/types';
 import { getCategoryEnumLabel } from '@/types/enums/category';
 import { getStatusEnumLabel } from '@/types/enums/status';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, router } from '@inertiajs/react';
 
 interface Props {
     paginate: Paginate<Ticket>;
@@ -20,6 +20,11 @@ const headers = [
 ]
 
 export default function TicketsIndex({ paginate }: Props) {
+    async function handleRowClick(ticket: Ticket) {
+        router.get(route('tickets.show', { ticket: ticket.id }));
+    }
+
+
     return (
         <AuthenticatedLayout
             header={
@@ -49,7 +54,11 @@ export default function TicketsIndex({ paginate }: Props) {
                             </TableHeader>
                             <TableBody>
                                 {paginate.data.map((ticket) => (
-                                    <TableRow key={ticket.id}>
+                                    <TableRow
+                                        key={ticket.id}
+                                        onClick={() => handleRowClick(ticket)}
+                                        className='cursor-pointer hover:bg-gray-100'
+                                    >
                                         <TableCell>{ticket.title}</TableCell>
                                         <TableCell>{ticket.description}</TableCell>
                                         <TableCell>{getCategoryEnumLabel(ticket.category)}</TableCell>

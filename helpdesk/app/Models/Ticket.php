@@ -33,4 +33,14 @@ class Ticket extends Model
     {
         return $this->belongsTo(Priority::class);
     }
+
+    public function created_by()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function technician()
+    {
+        return $this->belongsTo(User::class, 'technician_id');
+    }
 }

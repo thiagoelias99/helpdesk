@@ -42,6 +42,8 @@ export interface Ticket {
     status: StatusEnum;
     created_at: Date;
     updated_at: Date;
+    created_by?: User;
+    technician?: User;
 }
 
 export type PageProps<

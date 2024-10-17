@@ -20,3 +20,10 @@ export function getCategoryEnumLabel(level: CategoryEnum): string {
             return 'Outros';
     }
 }
+
+export const categoryOptions = Object.keys(CategoryEnum).map((option, index) => {
+    return {
+        value: Object.values(CategoryEnum)[index],
+        key: Object.keys(CategoryEnum)[index]
+    }
+})
