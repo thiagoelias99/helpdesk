@@ -15,7 +15,12 @@ class TicketsController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::latest()->paginate(10);
+        $tickets = null;
+        if (auth()->user()->isTechnician()) {
+            $tickets = Ticket::latest()->paginate(10);
+        } else {
+            $tickets = Ticket::where('user_id', auth()->id())->latest()->paginate(10);
+        }
 
         return Inertia::render("Tickets/Index", [
             "paginate" => $tickets
@@ -56,6 +61,16 @@ class TicketsController extends Controller
             'comments.user'
         ])->where('id', $id)->first();
 
+        if (auth()->user()->isTechnician()) {
+            return Inertia::render("Tickets/Show", [
+                "ticket" => $data
+            ]);
+        }
+
+        if ($data->user_id !== auth()->id()) {
+            return back();
+        }
+
         return Inertia::render("Tickets/Show", [
             "ticket" => $data
         ]);
@@ -66,6 +81,10 @@ class TicketsController extends Controller
      */
     public function edit(int $id)
     {
+        if (!auth()->user()->isTechnician()) {
+            return back();
+        }
+
         $ticket = Ticket::with([
             'technician',
             'created_by'

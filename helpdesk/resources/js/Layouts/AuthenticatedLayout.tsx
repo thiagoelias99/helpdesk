@@ -2,6 +2,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
+import { isTechnician } from '@/lib/permissions';
 import { Link, usePage } from '@inertiajs/react';
 import { PropsWithChildren, ReactNode, useState } from 'react';
 
@@ -33,12 +34,18 @@ export default function Authenticated({
                                 >
                                     Chamados
                                 </NavLink>
-                                <NavLink
-                                    href={route('users.index')}
-                                    active={route().current('users.index')}
-                                >
-                                    Usuários
-                                </NavLink>
+                                {
+                                    isTechnician(user) && (
+                                        <>
+                                            <NavLink
+                                                href={route('users.index')}
+                                                active={route().current('users.index')}
+                                            >
+                                                Usuários
+                                            </NavLink>
+                                        </>
+                                    )}
+
                             </div>
                         </div>
 

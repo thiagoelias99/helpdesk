@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Enums\UserLevelEnum;
 
 class User extends Authenticatable
 {
@@ -55,5 +55,15 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function isAdmin()
+    {
+        return $this->level === UserLevelEnum::ADMIN->value;
+    }
+
+    public function isTechnician()
+    {
+        return $this->level === UserLevelEnum::TECHNICIAN->value || $this->level === UserLevelEnum::ADMIN->value;
     }
 }

@@ -1,5 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import { Ticket } from '@/types';
 import { H2, H3, H4, P } from '@/Components/ui/typography';
 import { Line, Column, ScrollColumn } from '@/Components/ui/flex';
@@ -10,12 +10,16 @@ import { CommentForm } from './Partials/CommentForm';
 import Comment from './Partials/Comment';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/Components/ui/button';
+import { UserLevelEnum } from '@/types/enums/user-level';
+import { isTechnician } from '@/lib/permissions';
 
 interface Props {
     ticket: Ticket;
 }
 
 export default function TicketsShow({ ticket }: Props) {
+    const user = usePage().props.auth.user;
+
     return (
         <AuthenticatedLayout
             header={
@@ -26,12 +30,14 @@ export default function TicketsShow({ ticket }: Props) {
 
             <div className="py-12">
                 <div className="flex flex-col mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <Link
-                        href={route('tickets.edit', { ticket: ticket.id })}
-                        className={cn(buttonVariants({ variant: 'default', size: 'default' }), 'mb-2 self-end')}
-                    >
-                        Editar
-                    </Link>
+                    {isTechnician(user) && (
+                        <Link
+                            href={route('tickets.edit', { ticket: ticket.id })}
+                            className={cn(buttonVariants({ variant: 'default', size: 'default' }), 'mb-2 self-end')}
+                        >
+                            Editar
+                        </Link>
+                    )}
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg p-4">
                         <Column>
                             <Line>

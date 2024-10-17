@@ -16,6 +16,10 @@ class UsersController extends Controller
      */
     public function index()
     {
+        if (!auth()->user()->isAdmin()) {
+            return back();
+        }
+
         return Inertia::render("Users/Index", [
             "users" => User::all()
         ]);
@@ -26,6 +30,10 @@ class UsersController extends Controller
      */
     public function create()
     {
+        if (!auth()->user()->isAdmin()) {
+            return back();
+        }
+
         return Inertia::render("Users/Create");
     }
 
@@ -53,6 +61,10 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        if (!auth()->user()->isAdmin()) {
+            return back();
+        }
+
         return Inertia::render('Users/Edit', [
             'user' => $user
         ]);
