@@ -1,6 +1,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import CreateTicketForm from './Partials/CreateTicketForm';
+import { Card, CardContent, CardHeader, CardTitle } from '@/Components/ui/card';
 
 export default function UsersCreate() {
     return (
@@ -12,14 +13,14 @@ export default function UsersCreate() {
             }
         >
             <Head title="Abrir Chamado" />
-
-            <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg p-4">
-                        <CreateTicketForm />
-                    </div>
-                </div>
-            </div>
+            <Card>
+                <CardHeader>
+                    <CardTitle>Abrir Chamado</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <CreateTicketForm />
+                </CardContent>
+            </Card>
         </AuthenticatedLayout>
     );
 }
