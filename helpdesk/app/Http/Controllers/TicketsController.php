@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ticket;
 use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
+use App\Models\User;
 use Inertia\Inertia;
 
 class TicketsController extends Controller
@@ -50,7 +51,7 @@ class TicketsController extends Controller
             'technician',
             'created_by',
             'comments' => function ($query) {
-                $query->orderBy('created_at','desc');
+                $query->orderBy('created_at', 'desc');
             },
             'comments.user'
         ])->where('id', $id)->first();
@@ -63,9 +64,19 @@ class TicketsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ticket $ticket)
+    public function edit(int $id)
     {
+        $ticket = Ticket::with([
+            'technician',
+            'created_by'
+        ])->where('id', $id)->first();
 
+        $technicians = User::all();
+
+        return Inertia::render("Tickets/Edit", [
+            "ticket" => $ticket,
+            "technicians" => $technicians
+        ]);
     }
 
     /**
@@ -73,7 +84,9 @@ class TicketsController extends Controller
      */
     public function update(UpdateTicketRequest $request, Ticket $ticket)
     {
-        //
+        $data = $request->validated();
+        $ticket->update($data);
+        return to_route('tickets.show', $ticket->id);
     }
 
     /**

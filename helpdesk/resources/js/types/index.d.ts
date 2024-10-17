@@ -36,7 +36,7 @@ export interface Ticket {
     title: string;
     description: string;
     user_id: number;
-    technician_id: string | null;
+    technician_id: number | null;
     category: CategoryEnum;
     priority: PriorityEnum;
     status: StatusEnum;

@@ -1,5 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import { Ticket } from '@/types';
 import { H2, H3, H4, P } from '@/Components/ui/typography';
 import { Line, Column, ScrollColumn } from '@/Components/ui/flex';
@@ -8,13 +8,14 @@ import { getPriorityEnumLabel } from '@/types/enums/priority';
 import { getStatusEnumLabel } from '@/types/enums/status';
 import { CommentForm } from './Partials/CommentForm';
 import Comment from './Partials/Comment';
+import { cn } from '@/lib/utils';
+import { buttonVariants } from '@/Components/ui/button';
 
 interface Props {
     ticket: Ticket;
 }
 
 export default function TicketsShow({ ticket }: Props) {
-    console.log(ticket)
     return (
         <AuthenticatedLayout
             header={
@@ -24,7 +25,13 @@ export default function TicketsShow({ ticket }: Props) {
             <Head title="Chamado" />
 
             <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 space-y-4">
+                <div className="flex flex-col mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    <Link
+                        href={route('tickets.edit', { ticket: ticket.id })}
+                        className={cn(buttonVariants({ variant: 'default', size: 'default' }), 'mb-2 self-end')}
+                    >
+                        Editar
+                    </Link>
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg p-4">
                         <Column>
                             <Line>
@@ -70,7 +77,7 @@ export default function TicketsShow({ ticket }: Props) {
                         </Column>
                     </div>
 
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg p-4">
+                    <div className="mt-6 overflow-hidden bg-white shadow-sm sm:rounded-lg p-4">
                         <H3 className="mb-4">Comentários ({ticket.comments?.length})</H3>
                         {ticket.comments?.length === 0 && (
                             <H4>Nenhum comentário encontrado</H4>

@@ -8,8 +8,6 @@ interface Props {
 }
 
 export default function UsersCreate({ user }: Props) {
-    console.log(user);
-
     return (
         <AuthenticatedLayout
             header={

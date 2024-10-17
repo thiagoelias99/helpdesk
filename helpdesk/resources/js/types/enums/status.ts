@@ -20,3 +20,10 @@ export function getStatusEnumLabel(level: StatusEnum): string {
             return 'Fechado';
     }
 }
+
+export const statusOptions = Object.keys(StatusEnum).map((option, index) => {
+    return {
+        value: Object.values(StatusEnum)[index],
+        key: Object.keys(StatusEnum)[index]
+    }
+})
