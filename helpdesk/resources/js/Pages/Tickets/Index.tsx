@@ -21,6 +21,7 @@ const headers = [
 
 export default function TicketsIndex({ paginate }: Props) {
     async function handleRowClick(ticket: Ticket) {
+        console.log(ticket);
         router.get(route('tickets.show', { ticket: ticket.id }));
     }
 

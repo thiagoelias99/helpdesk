@@ -44,6 +44,14 @@ export interface Ticket {
     updated_at: Date;
     created_by?: User;
     technician?: User;
+    comments?: Comment[];
+}
+
+export interface Comment {
+    id: number;
+    content: string;
+    created_at: Date;
+    user: User;
 }
 
 export type PageProps<

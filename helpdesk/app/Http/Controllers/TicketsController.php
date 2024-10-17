@@ -44,9 +44,16 @@ class TicketsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Ticket $ticket)
+    public function show(int $id)
     {
-        $data = $ticket->with('technician', 'created_by')->first();
+        $data = Ticket::with([
+            'technician',
+            'created_by',
+            'comments' => function ($query) {
+                $query->orderBy('created_at','desc');
+            },
+            'comments.user'
+        ])->where('id', $id)->first();
 
         return Inertia::render("Tickets/Show", [
             "ticket" => $data

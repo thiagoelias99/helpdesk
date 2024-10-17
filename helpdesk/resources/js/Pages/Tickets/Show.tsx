@@ -1,12 +1,13 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import { Ticket } from '@/types';
-import TicketForm from './Partials/TicketForm';
-import { H2, H3, P } from '@/Components/ui/typography';
-import { Line, Column } from '@/Components/ui/flex';
+import { H2, H3, H4, P } from '@/Components/ui/typography';
+import { Line, Column, ScrollColumn } from '@/Components/ui/flex';
 import { getCategoryEnumLabel } from '@/types/enums/category';
 import { getPriorityEnumLabel } from '@/types/enums/priority';
 import { getStatusEnumLabel } from '@/types/enums/status';
+import { CommentForm } from './Partials/CommentForm';
+import Comment from './Partials/Comment';
 
 interface Props {
     ticket: Ticket;
@@ -23,7 +24,7 @@ export default function TicketsShow({ ticket }: Props) {
             <Head title="Chamado" />
 
             <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 space-y-4">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg p-4">
                         <Column>
                             <Line>
@@ -67,6 +68,19 @@ export default function TicketsShow({ ticket }: Props) {
                                 <P>{ticket.technician?.name ?? "Não atribuído"}</P>
                             </Line>
                         </Column>
+                    </div>
+
+                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg p-4">
+                        <H3 className="mb-4">Comentários ({ticket.comments?.length})</H3>
+                        {ticket.comments?.length === 0 && (
+                            <H4>Nenhum comentário encontrado</H4>
+                        )}
+                        <ScrollColumn className="gap-2">
+                            {ticket.comments?.map(comment => (
+                                <Comment key={comment.id} comment={comment} className='my-2' />
+                            ))}
+                        </ScrollColumn>
+                        <CommentForm ticket_id={ticket.id} className='mt-4' />
                     </div>
                 </div>
             </div>

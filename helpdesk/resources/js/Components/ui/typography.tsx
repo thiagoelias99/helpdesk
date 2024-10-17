@@ -37,3 +37,11 @@ export const P = ({ children, className }: Props) => {
         </p>
     )
 }
+
+export const Caption = ({ children, className }: Props) => {
+    return (
+        <p className={cn("text-sm leading-tight text-foreground", className)}>
+            {children}
+        </p>
+    )
+}

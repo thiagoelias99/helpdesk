@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProfileController;
@@ -27,6 +28,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('users', UsersController::class);
     Route::resource('tickets', TicketsController::class);
+
+    Route::post('/comments', [CommentsController::class, 'store'])->name('comments.store');
 });
 
 require __DIR__ . '/auth.php';
