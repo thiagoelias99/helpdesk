@@ -4,9 +4,11 @@ import { useForm } from 'react-hook-form'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/Components/ui/form'
 import { Button } from '@/Components/ui/button'
 import { Input } from '@/Components/ui/input'
-import { router } from '@inertiajs/react'
 import { User } from '@/types'
 import { useEffect } from 'react'
+import { getUserLevelEnumLabel, UserLevelEnum, userLevelOptions } from '@/types/enums/user-level'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/Components/ui/select'
+import { router } from '@inertiajs/react'
 
 interface Props {
     user?: User;
@@ -18,12 +20,18 @@ export default function UserForm({ user }: Props) {
         email: z.string().email(),
         password: isUpdate ? z.string().min(6).max(255).optional() : z.string().min(6).max(255),
         password_confirmation: isUpdate ? z.string().min(6).max(255).optional() : z.string().min(6).max(255),
+        level: z.nativeEnum(UserLevelEnum),
     })
 
     const formSchema = userFormSchema(!!user)
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
+        defaultValues: {
+            name: user?.name || '',
+            email: user?.email || '',
+            level: user?.level || UserLevelEnum.USER,
+        }
     })
 
     useEffect(() => {
@@ -95,6 +103,30 @@ export default function UserForm({ user }: Props) {
                             <FormControl>
                                 <Input type='password' {...field} />
                             </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="level"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Função</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <FormControl>
+                                    <SelectTrigger>
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                    {userLevelOptions.map((option) => (
+                                        <SelectItem key={option.value} value={option.value}>
+                                            {getUserLevelEnumLabel(option.value)}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
                             <FormMessage />
                         </FormItem>
                     )}

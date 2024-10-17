@@ -14,3 +14,10 @@ export function getUserLevelEnumLabel(level: UserLevelEnum): string {
             return 'Técnico';
     }
 }
+
+export const userLevelOptions = Object.keys(UserLevelEnum).map((option, index) => {
+    return {
+        value: Object.values(UserLevelEnum)[index],
+        key: Object.keys(UserLevelEnum)[index]
+    }
+});

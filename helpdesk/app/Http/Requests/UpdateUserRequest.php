@@ -12,7 +12,8 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        $user = auth()->user();
+        return $user->level === 'admin' || $user->level === 'technician';
     }
 
     /**
@@ -26,6 +27,7 @@ class UpdateUserRequest extends FormRequest
             'name' => 'required|string|max:55',
             // Email must be unique, but ignore the current user's email
             'email' => 'required|email|unique:users,email' . $this->user->id,
+            'level' => 'required|exists:user_levels,level',
             'password' => [
                 'confirmed',
                 Password::min(8)

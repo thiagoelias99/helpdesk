@@ -12,7 +12,8 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        $user = auth()->user();
+        return $user->level === 'admin' || $user->level === 'technician';
     }
 
     /**
@@ -25,6 +26,7 @@ class StoreUserRequest extends FormRequest
         return [
             'name' => 'required|string|max:55',
             'email' => 'required|email|unique:users,email',
+            'level' => 'required|exists:user_levels,level',
             'password' => [
                 'required',
                 'confirmed',

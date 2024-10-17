@@ -11,9 +11,8 @@ class UpdateTicketRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        // $user = auth()->user();
-        // return $user->role === 'admin' || $user->role === 'technician';
-        return true;
+        $user = auth()->user();
+        return $user->level === 'admin' || $user->level === 'technician';
     }
 
     /**
