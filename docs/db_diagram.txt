@@ -38,7 +38,7 @@ Table tickets {
   title varchar
   description string
   user_id integer
-  agent_id integer [null]
+  technician_id integer [null]
   category varchar
   priority varchar
   status varchar

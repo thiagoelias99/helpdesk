@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('title');
             $table->string('description');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('technician_id');
+            $table->unsignedBigInteger('technician_id')->nullable()->default(null);
             $table->string('category');
             $table->string('priority');
             $table->string('status');

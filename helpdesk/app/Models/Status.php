@@ -9,4 +9,9 @@ class Status extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }
