@@ -1,14 +1,16 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/Components/ui/dropdown-menu'
 import { Button } from '@/Components/ui/button'
-import { CircleUserIcon } from 'lucide-react'
 import { HeaderDropdown } from '@/config'
-import { router } from '@inertiajs/react'
+import { router, usePage } from '@inertiajs/react'
+import { Avatar, AvatarFallback, AvatarImage } from '@/Components/ui/avatar'
 
 interface Props {
     items?: HeaderDropdown[]
 }
 
 export default function HeaderDropDown({ items = [] }: Props) {
+    const user = usePage().props.auth.user;
+
     const handleItemClick = (path: string, method: string) => {
         switch (method) {
             case 'GET':
@@ -26,7 +28,10 @@ export default function HeaderDropDown({ items = [] }: Props) {
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button variant="secondary" size="icon" className="rounded-full">
-                    <CircleUserIcon className="h-5 w-5" />
+                    <Avatar>
+                        <AvatarImage src="https://github.com/shadcn.png" />
+                        <AvatarFallback>{user.name.substring(0,2) ?? 'Us'}</AvatarFallback>
+                    </Avatar>
                     <span className="sr-only">Toggle user menu</span>
                 </Button>
             </DropdownMenuTrigger>

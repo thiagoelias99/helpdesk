@@ -63,7 +63,7 @@ export function laravelMessageMapper(message?: string): string | undefined {
         return 'A confirmação da nova senha deve corresponder à nova senha.';
     }
     if (message.includes('These credentials do not match our records.')) {
-        return 'Credencais inválidas.';
+        return 'Credenciais inválidas.';
     }
     if (message.includes('is required')) {
         return 'Campo é obrigatório';
@@ -76,6 +76,9 @@ export function laravelMessageMapper(message?: string): string | undefined {
     }
     if (message.includes('We have emailed your password reset link.')) {
         return 'Enviamos um link para redefinir sua senha. Verifique seu email.';
+    }
+    if (message.includes('The password is incorrect.')) {
+        return 'A senha está incorreta.';
     }
     return message;
 }

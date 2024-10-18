@@ -7,6 +7,7 @@ export interface User {
     name: string;
     email: string;
     level: UserLevelEnum;
+    email_verified_at: Date | null;
 }
 
 export interface Link {
