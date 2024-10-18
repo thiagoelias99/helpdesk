@@ -11,10 +11,12 @@ interface Props {
 export default function UsersCreate({ user }: Props) {
     return (
         <AuthenticatedLayout
-            header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    {user.name}
-                </h2>
+            breadcrumbNav={
+                [
+                    { label: 'Usuários', route: 'tickets.index' },
+                    { label: user.name, route: 'users.edit', param: { user: user.id } },
+                    { label: 'Editar', route: 'users.edit', param: { user: user.id } }
+                ]
             }
         >
             <Head title="Editar Usuário" />

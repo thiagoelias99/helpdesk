@@ -61,3 +61,9 @@ export type PageProps<
         user: User;
     };
 };
+
+type HeaderBreadcrumbItem = {
+    label: string
+    route: string
+    param?: Record<string, string | number>
+}

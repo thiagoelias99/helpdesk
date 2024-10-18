@@ -6,10 +6,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/Components/ui/card';
 export default function UsersCreate() {
     return (
         <AuthenticatedLayout
-            header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Cadastrar Usuário
-                </h2>
+            breadcrumbNav={
+                [
+                    { label: 'Usuários', route: 'users.index' },
+                    { label: 'Novo', route: 'users.create' }
+                ]
             }
         >
             <Head title="Cadastrar Usuário" />

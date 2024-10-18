@@ -26,13 +26,7 @@ export default function TicketsIndex({ paginate }: Props) {
     }
 
     return (
-        <AuthenticatedLayout
-            header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Chamados
-                </h2>
-            }
-        >
+        <AuthenticatedLayout>
             <Head title="Chamados" />
             <Link
                 href={route('tickets.create')}

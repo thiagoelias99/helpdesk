@@ -13,8 +13,12 @@ interface Props {
 export default function TicketsEdit({ ticket, technicians }: Props) {
     return (
         <AuthenticatedLayout
-            header={
-                <H2>Editar Chamado</H2>
+            breadcrumbNav={
+                [
+                    { label: 'Chamados', route: 'tickets.index' },
+                    { label: ticket.title, route: 'tickets.show', param: { ticket: ticket.id } },
+                    { label: 'Editar', route: 'tickets.edit', param: { ticket: ticket.id } }
+                ]
             }
         >
             <Head title="Chamado" />

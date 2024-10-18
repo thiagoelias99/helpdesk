@@ -10,7 +10,6 @@ import { CommentForm } from './Partials/CommentForm';
 import Comment from './Partials/Comment';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/Components/ui/button';
-import { UserLevelEnum } from '@/types/enums/user-level';
 import { isTechnician } from '@/lib/permissions';
 import { Card, CardContent, CardHeader, CardTitle } from '@/Components/ui/card';
 
@@ -23,8 +22,11 @@ export default function TicketsShow({ ticket }: Props) {
 
     return (
         <AuthenticatedLayout
-            header={
-                <H2>Visualizar Chamado</H2>
+            breadcrumbNav={
+                [
+                    { label: 'Chamados', route: 'tickets.index' },
+                    { label: ticket.title, route: 'tickets.show', param: { ticket: ticket.id } }
+                ]
             }
         >
             <Head title="Chamado" />

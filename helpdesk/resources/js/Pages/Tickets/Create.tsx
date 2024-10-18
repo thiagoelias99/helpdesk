@@ -6,10 +6,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/Components/ui/card';
 export default function UsersCreate() {
     return (
         <AuthenticatedLayout
-            header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Abrir Chamado
-                </h2>
+            breadcrumbNav={
+                [
+                    { label: 'Chamados', route: 'tickets.index' },
+                    { label: 'Novo', route: 'tickets.create' }
+                ]
             }
         >
             <Head title="Abrir Chamado" />
