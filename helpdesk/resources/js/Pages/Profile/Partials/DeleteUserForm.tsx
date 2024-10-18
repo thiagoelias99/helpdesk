@@ -1,22 +1,21 @@
-import DangerButton from '@/Components/DangerButton';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
-import Modal from '@/Components/Modal';
-import SecondaryButton from '@/Components/SecondaryButton';
 import TextInput from '@/Components/TextInput';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/Components/ui/alert-dialog';
 import { Button } from '@/Components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/Components/ui/card';
+import { Input } from '@/Components/ui/input';
+import { Label } from '@/Components/ui/label';
+import { CaptionError } from '@/Components/ui/typography';
 import { laravelMessageMapper } from '@/lib/error.mapper';
 import { useForm } from '@inertiajs/react';
-import { FormEventHandler, useRef, useState } from 'react';
+import { FormEventHandler, useRef } from 'react';
 
 export default function DeleteUserForm({
     className = '',
 }: {
     className?: string;
 }) {
-    const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
     const passwordInput = useRef<HTMLInputElement>(null);
 
     const {
@@ -58,7 +57,6 @@ export default function DeleteUserForm({
                             <Button
                                 variant="destructive"
                                 isLoading={processing}
-                            // onClick={confirmUserDeletion}
                             >
                                 EXCLUIR CONTA
                             </Button>
@@ -75,13 +73,14 @@ export default function DeleteUserForm({
                             </AlertDialogHeader>
                             <form onSubmit={deleteUser} className="">
                                 <div className="">
-                                    <InputLabel
+                                    <Label
                                         htmlFor="password"
-                                        value="Password"
                                         className="sr-only"
-                                    />
+                                    >
+                                        Senha
+                                    </Label>
 
-                                    <TextInput
+                                    <Input
                                         id="password"
                                         type="password"
                                         name="password"
@@ -91,14 +90,11 @@ export default function DeleteUserForm({
                                             setData('password', e.target.value)
                                         }
                                         className="mt-1 block w-full"
-                                        isFocused
+                                        autoFocus
                                         placeholder="Senha"
                                     />
 
-                                    <InputError
-                                        message={laravelMessageMapper(errors.password)}
-                                        className="mt-2"
-                                    />
+                                    <CaptionError>{laravelMessageMapper(errors.password)}</CaptionError>
                                 </div>
                             </form>
                             <AlertDialogFooter>

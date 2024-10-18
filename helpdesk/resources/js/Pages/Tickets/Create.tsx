@@ -14,7 +14,7 @@ export default function UsersCreate() {
             }
         >
             <Head title="Abrir Chamado" />
-            <Card>
+            <Card className='max-w-screen-sm w-full mx-auto'>
                 <CardHeader>
                     <CardTitle>Abrir Chamado</CardTitle>
                 </CardHeader>

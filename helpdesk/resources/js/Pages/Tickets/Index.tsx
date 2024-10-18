@@ -41,7 +41,7 @@ export default function TicketsIndex({ paginate }: Props) {
                 <CardContent>
                     <Table>
                         <TableHeader>
-                            <TableRow>
+                            <TableRow className='hover:bg-transparent'>
                                 {headers.map((header) => (
                                     <TableCell key={header.key} className="font-medium">{header.label}</TableCell>
                                 ))}
@@ -52,7 +52,7 @@ export default function TicketsIndex({ paginate }: Props) {
                                 <TableRow
                                     key={ticket.id}
                                     onClick={() => handleRowClick(ticket)}
-                                    className='cursor-pointer hover:bg-gray-100'
+                                    className='cursor-pointer'
                                 >
                                     <TableCell>{ticket.title}</TableCell>
                                     <TableCell>{ticket.description}</TableCell>

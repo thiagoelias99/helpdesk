@@ -43,8 +43,8 @@ class TicketsController extends Controller
         $data = $request->validated();
         $data['user_id'] = auth()->id();
         $data['status'] = 'open';
-        Ticket::create($data);
-        return to_route('tickets.index');
+        $ticket = Ticket::create($data);
+        return to_route('tickets.show', $ticket->id);
     }
 
     /**
@@ -90,7 +90,7 @@ class TicketsController extends Controller
             'created_by'
         ])->where('id', $id)->first();
 
-        $technicians = User::all();
+        $technicians = User::technician()->get();
 
         return Inertia::render("Tickets/Edit", [
             "ticket" => $ticket,

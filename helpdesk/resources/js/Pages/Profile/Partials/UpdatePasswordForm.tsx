@@ -4,6 +4,9 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Button } from '@/Components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/Components/ui/card';
+import { Input } from '@/Components/ui/input';
+import { Label } from '@/Components/ui/label';
+import { CaptionError } from '@/Components/ui/typography';
 import { laravelMessageMapper } from '@/lib/error.mapper';
 import { Transition } from '@headlessui/react';
 import { useForm } from '@inertiajs/react';
@@ -64,12 +67,13 @@ export default function UpdatePasswordForm({
 
                     <form onSubmit={updatePassword} className="space-y-4">
                         <div>
-                            <InputLabel
+                            <Label
                                 htmlFor="current_password"
-                                value="Senha Atual"
-                            />
+                            >
+                                Senha Atual
+                            </Label>
 
-                            <TextInput
+                            <Input
                                 id="current_password"
                                 ref={currentPasswordInput}
                                 value={data.current_password}
@@ -81,16 +85,13 @@ export default function UpdatePasswordForm({
                                 autoComplete="current-password"
                             />
 
-                            <InputError
-                                message={laravelMessageMapper(errors.current_password)}
-                                className="mt-2"
-                            />
+                            <CaptionError>{laravelMessageMapper(errors.current_password)}</CaptionError>
                         </div>
 
                         <div>
-                            <InputLabel htmlFor="password" value="Nova Senha" />
+                            <Label htmlFor="password">Nova Senha</Label>
 
-                            <TextInput
+                            <Input
                                 id="password"
                                 ref={passwordInput}
                                 value={data.password}
@@ -100,16 +101,17 @@ export default function UpdatePasswordForm({
                                 autoComplete="new-password"
                             />
 
-                            <InputError message={laravelMessageMapper(errors.password)} className="mt-2" />
+                            <CaptionError>{laravelMessageMapper(errors.password)}</CaptionError>
                         </div>
 
                         <div>
-                            <InputLabel
+                            <Label
                                 htmlFor="password_confirmation"
-                                value="Confirmação da Nova Senha"
-                            />
+                                >
+                                Confirme a Nova Senha
+                                </Label>
 
-                            <TextInput
+                            <Input
                                 id="password_confirmation"
                                 value={data.password_confirmation}
                                 onChange={(e) =>
@@ -120,10 +122,7 @@ export default function UpdatePasswordForm({
                                 autoComplete="new-password"
                             />
 
-                            <InputError
-                                message={laravelMessageMapper(errors.password_confirmation)}
-                                className="mt-2"
-                            />
+                            <CaptionError>{laravelMessageMapper(errors.password_confirmation)}</CaptionError>
                         </div>
 
                         <Button isLoading={processing}>Salvar</Button>

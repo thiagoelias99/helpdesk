@@ -1,5 +1,3 @@
-import InputError from '@/Components/InputError';
-import TextInput from '@/Components/TextInput';
 import { Button } from '@/Components/ui/button';
 import { CardHeader, CardTitle, CardContent, CardDescription } from '@/Components/ui/card';
 import { Column } from '@/Components/ui/flex';
@@ -8,6 +6,8 @@ import GuestLayout from '@/Layouts/GuestLayout';
 import { laravelMessageMapper } from '@/lib/error.mapper';
 import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
+import { Input } from '@/Components/ui/input';
+import { Caption } from '@/Components/ui/typography';
 
 export default function ForgotPassword({ status }: { status?: string }) {
     const { data, setData, post, processing, errors } = useForm({
@@ -35,18 +35,17 @@ export default function ForgotPassword({ status }: { status?: string }) {
             <CardContent>
                 <form onSubmit={submit}>
                     <Column>
-
                         <div className='w-full max-w-prose'>
-                            <TextInput
+                            <Input
                                 id="email"
                                 type="email"
                                 name="email"
                                 value={data.email}
                                 className="mt-1 block w-full"
-                                isFocused={true}
+                                autoFocus
                                 onChange={(e) => setData('email', e.target.value)}
                             />
-                            <InputError message={laravelMessageMapper(errors.email)} className="mt-2" />
+                            <Caption className="mt-1 text-destructive">{laravelMessageMapper(errors.email)}</Caption>
                         </div>
 
                         <Button

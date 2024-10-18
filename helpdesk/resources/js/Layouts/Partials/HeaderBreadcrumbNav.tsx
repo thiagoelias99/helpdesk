@@ -14,8 +14,8 @@ export default function HeaderBreadcrumbNav({ items = [], className }: Props) {
     console.log(items)
 
     return (
-        <div className="bg-background h-8">
-            <Breadcrumb className="hidden sm:flex">
+        <div className="bg-card h-8">
+            <Breadcrumb className="flex">
                 <BreadcrumbList>
                     {items.map((item, index) => (
                         <BreadcrumbItem key={index} className='last:hidden'>

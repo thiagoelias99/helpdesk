@@ -13,7 +13,7 @@ export default function UsersCreate({ user }: Props) {
         <AuthenticatedLayout
             breadcrumbNav={
                 [
-                    { label: 'Usuários', route: 'tickets.index' },
+                    { label: 'Usuários', route: 'users.index' },
                     { label: user.name, route: 'users.edit', param: { user: user.id } },
                     { label: 'Editar', route: 'users.edit', param: { user: user.id } }
                 ]

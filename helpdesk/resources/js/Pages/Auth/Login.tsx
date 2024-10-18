@@ -1,11 +1,10 @@
-import Checkbox from '@/Components/Checkbox';
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import TextInput from '@/Components/TextInput';
 import { Button } from '@/Components/ui/button';
 import { CardHeader, CardTitle, CardContent } from '@/Components/ui/card';
+import { Checkbox } from '@/Components/ui/checkbox';
 import FlashMessage from '@/Components/ui/flash-message';
 import { Column, Line } from '@/Components/ui/flex';
+import { Input } from '@/Components/ui/input';
+import { Label } from '@/Components/ui/label';
 import { Caption } from '@/Components/ui/typography';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { laravelMessageMapper } from '@/lib/error.mapper';
@@ -49,22 +48,22 @@ export default function Login({
                 <form onSubmit={submit}>
                     <Column className="w-full">
                         <div className='w-full'>
-                            <InputLabel htmlFor="email" value="Email" />
-                            <TextInput
+                            <Label htmlFor="email">Email</Label>
+                            <Input
                                 id="email"
                                 type="email"
                                 name="email"
                                 value={data.email}
                                 className="mt-1 block w-full"
                                 autoComplete="username"
-                                isFocused={true}
+                                autoFocus={true}
                                 onChange={(e) => setData('email', e.target.value)}
                             />
-                            <InputError message={laravelMessageMapper(errors.email)} className="mt-2" />
+                            <Label className="mt-1 text-destructive">{laravelMessageMapper(errors.email)}</Label>
                         </div>
                         <div className='w-full'>
-                            <InputLabel htmlFor="password" value="Senha" />
-                            <TextInput
+                            <Label htmlFor="password">Senha</Label>
+                            <Input
                                 id="password"
                                 type="password"
                                 name="password"
@@ -73,16 +72,14 @@ export default function Login({
                                 autoComplete="current-password"
                                 onChange={(e) => setData('password', e.target.value)}
                             />
-                            <InputError message={laravelMessageMapper(errors.password)} className="mt-2" />
+                            <Caption className="mt-1 text-destructive">{laravelMessageMapper(errors.password)}</Caption>
                         </div>
                         <div className='w-full'>
                             <Line className="flex items-center">
                                 <Checkbox
                                     name="remember"
                                     checked={data.remember}
-                                    onChange={(e) =>
-                                        setData('remember', e.target.checked)
-                                    }
+                                    onCheckedChange={(checked) => setData('remember', checked as boolean)}
                                 />
                                 <Caption>Lembrar</Caption>
                             </Line>

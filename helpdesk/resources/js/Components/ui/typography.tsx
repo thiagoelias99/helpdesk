@@ -45,3 +45,11 @@ export const Caption = ({ children, className }: Props) => {
         </p>
     )
 }
+
+export const CaptionError = ({ children, className }: Props) => {
+    return (
+        <p className={cn("mt-1 text-sm leading-tight text-destructive", className)}>
+            {children}
+        </p>
+    )
+}

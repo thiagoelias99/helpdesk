@@ -24,13 +24,7 @@ export default function UserIndex({ users }: Props) {
     }
 
     return (
-        <AuthenticatedLayout
-            header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Usuários
-                </h2>
-            }
-        >
+        <AuthenticatedLayout>
             <Head title="Usuários" />
 
             <Link
@@ -48,7 +42,7 @@ export default function UserIndex({ users }: Props) {
                 <CardContent>
                     <Table>
                         <TableHeader>
-                            <TableRow>
+                            <TableRow className='hover:bg-transparent'>
                                 {headers.map((header) => (
                                     <TableCell key={header.key} className="font-medium">{header.label}</TableCell>
                                 ))}
@@ -59,7 +53,7 @@ export default function UserIndex({ users }: Props) {
                                 <TableRow
                                     key={user.id}
                                     onClick={() => handleRowClick(user)}
-                                    className='cursor-pointer hover:bg-gray-100'
+                                    className='cursor-pointer'
                                 >
                                     <TableCell>{user.name}</TableCell>
                                     <TableCell>{user.email}</TableCell>

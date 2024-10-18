@@ -5,7 +5,9 @@ import TextInput from '@/Components/TextInput';
 import { Button, buttonVariants } from '@/Components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/Components/ui/card';
 import FlashMessage from '@/Components/ui/flash-message';
-import { Caption, P } from '@/Components/ui/typography';
+import { Input } from '@/Components/ui/input';
+import { Label } from '@/Components/ui/label';
+import { Caption, CaptionError, P } from '@/Components/ui/typography';
 import { laravelMessageMapper } from '@/lib/error.mapper';
 import { Transition } from '@headlessui/react';
 import { Link, useForm, usePage } from '@inertiajs/react';
@@ -46,22 +48,21 @@ export default function UpdateProfileInformation({
                 <CardContent>
                     <form onSubmit={submit} className="space-y-4">
                         <div>
-                            <InputLabel htmlFor="name" value="Nome" />
-                            <TextInput
+                            <Label htmlFor="name">Nome</Label>
+                            <Input
                                 id="name"
                                 className="mt-1 block w-full"
                                 value={data.name}
                                 onChange={(e) => setData('name', e.target.value)}
                                 required
-                                isFocused
                                 autoComplete="name"
                             />
-                            <InputError className="mt-2" message={laravelMessageMapper(errors.name)} />
+                            <CaptionError>{laravelMessageMapper(errors.name)}</CaptionError>
                         </div>
                         <div>
-                            <InputLabel htmlFor="email" value="Email" />
+                            <Label htmlFor="email">E-mail</Label>
 
-                            <TextInput
+                            <Input
                                 id="email"
                                 type="email"
                                 className="mt-1 block w-full"
@@ -71,7 +72,7 @@ export default function UpdateProfileInformation({
                                 autoComplete="email"
                             />
 
-                            <InputError className="mt-2" message={laravelMessageMapper(errors.email)} />
+                            <CaptionError>{laravelMessageMapper(errors.email)}</CaptionError>
                         </div>
 
                         {mustVerifyEmail && user.email_verified_at === null && (

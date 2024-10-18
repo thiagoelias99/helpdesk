@@ -1,8 +1,9 @@
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
+import { Button } from '@/Components/ui/button';
+import { Input } from '@/Components/ui/input';
+import { Label } from '@/Components/ui/label';
+import { Caption } from '@/Components/ui/typography';
 import GuestLayout from '@/Layouts/GuestLayout';
+import { laravelMessageMapper } from '@/lib/error.mapper';
 import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 
@@ -30,49 +31,47 @@ export default function ResetPassword({
 
     return (
         <GuestLayout>
-            <Head title="Reset Password" />
+            <Head title="Recuperar Senha" />
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                    <Label htmlFor="email">Email</Label>
 
-                    <TextInput
+                    <Input
                         id="email"
                         type="email"
                         name="email"
                         value={data.email}
                         className="mt-1 block w-full"
-                        autoComplete="username"
+                        autoComplete="email"
                         onChange={(e) => setData('email', e.target.value)}
                     />
 
-                    <InputError message={errors.email} className="mt-2" />
+                    <Caption className="mt-1 text-destructive">{laravelMessageMapper(errors.email)}</Caption>
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <Label htmlFor="password">Senha</Label>
 
-                    <TextInput
+                    <Input
                         id="password"
                         type="password"
                         name="password"
                         value={data.password}
                         className="mt-1 block w-full"
                         autoComplete="new-password"
-                        isFocused={true}
+                        autoFocus
                         onChange={(e) => setData('password', e.target.value)}
                     />
-
-                    <InputError message={errors.password} className="mt-2" />
+                    <Caption className="mt-1 text-destructive">{laravelMessageMapper(errors.password)}</Caption>
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel
+                    <Label
                         htmlFor="password_confirmation"
-                        value="Confirm Password"
-                    />
+                    >Confirmar Senha</Label>
 
-                    <TextInput
+                    <Input
                         type="password"
                         name="password_confirmation"
                         value={data.password_confirmation}
@@ -83,16 +82,15 @@ export default function ResetPassword({
                         }
                     />
 
-                    <InputError
-                        message={errors.password_confirmation}
-                        className="mt-2"
-                    />
+                    <Caption className="mt-1 text-destructive">
+                        {laravelMessageMapper(errors.password_confirmation)}
+                    </Caption>
                 </div>
 
                 <div className="mt-4 flex items-center justify-end">
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Reset Password
-                    </PrimaryButton>
+                    <Button isLoading={processing}>
+                        Atualizar Senha
+                    </Button>
                 </div>
             </form>
         </GuestLayout>

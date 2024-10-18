@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Enums\UserLevelEnum;
+use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable
 {
@@ -65,5 +66,9 @@ class User extends Authenticatable
     public function isTechnician()
     {
         return $this->level === UserLevelEnum::TECHNICIAN->value || $this->level === UserLevelEnum::ADMIN->value;
+    }
+
+    public function scopeTechnician(Builder $query){
+        return $query->where('level', 'technician');
     }
 }
