@@ -1,13 +1,16 @@
+import { isAdmin } from './lib/permissions';
+import { User } from './types';
 
 export interface HeaderLink {
     label: string;
     route: string;
     mainUrl: string;
+    validation?: (user: User) => boolean;
 }
 
 export const headerLinks: HeaderLink[] = [
     { label: 'Chamados', route: 'tickets.index', mainUrl: '/tickets' },
-    { label: 'Usuários', route: 'users.index', mainUrl: '/users' },
+    { label: 'Usuários', route: 'users.index', mainUrl: '/users', validation: isAdmin },
 ];
 
 export interface HeaderDropdown {
