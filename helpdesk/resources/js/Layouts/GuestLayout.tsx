@@ -1,4 +1,5 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
+import { Card } from '@/Components/ui/card';
 import { Link } from '@inertiajs/react';
 import { PropsWithChildren } from 'react';
 
@@ -11,9 +12,9 @@ export default function Guest({ children }: PropsWithChildren) {
                 </Link>
             </div>
 
-            <div className="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg">
+            <Card>
                 {children}
-            </div>
+            </Card>
         </div>
     );
 }
