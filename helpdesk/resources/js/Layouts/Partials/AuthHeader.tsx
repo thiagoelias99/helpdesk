@@ -23,7 +23,7 @@ export default function AuthHeader({ breadcrumbNav }: Props) {
     }, [])
 
     return (
-        <header className="sticky top-0 flex flex-col border-b bg-card px-4 md:px-6">
+        <header className="sticky top-0 flex flex-col border-b bg-card px-4 md:px-6 z-30">
             <div className='flex items-center gap-4 w-full h-16'>
                 <AuthNav
                     currentUrl={url}

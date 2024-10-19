@@ -34,16 +34,16 @@ export default function TicketsIndex({ paginate }: Props) {
             >
                 Novo
             </Link>
-            <Card>
+            <Card className='max-w-screen-xl mx-auto w-full'>
                 <CardHeader>
                     <CardTitle>Chamados</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <Table>
                         <TableHeader>
-                            <TableRow className='hover:bg-transparent'>
+                            <TableRow className='hover:bg-transparent fonb'>
                                 {headers.map((header) => (
-                                    <TableCell key={header.key} className="font-medium">{header.label}</TableCell>
+                                    <TableCell key={header.key} className="font-bold text-base">{header.label}</TableCell>
                                 ))}
                             </TableRow>
                         </TableHeader>
@@ -55,7 +55,7 @@ export default function TicketsIndex({ paginate }: Props) {
                                     className='cursor-pointer'
                                 >
                                     <TableCell>{ticket.title}</TableCell>
-                                    <TableCell>{ticket.description}</TableCell>
+                                    <TableCell className='max-w-prose truncate'>{ticket.description}</TableCell>
                                     <TableCell>{getCategoryEnumLabel(ticket.category)}</TableCell>
                                     <TableCell>{getStatusEnumLabel(ticket.status)}</TableCell>
                                     <TableCell>{new Date(ticket.created_at).toLocaleString()}</TableCell>

@@ -22,7 +22,7 @@ export default function TicketsEdit({ ticket, technicians }: Props) {
             }
         >
             <Head title="Chamado" />
-            <Card>
+            <Card className='w-full max-w-screen-xl mx-auto'>
                 <CardHeader>
                     <CardTitle>Detalhes do Chamado</CardTitle>
                 </CardHeader>

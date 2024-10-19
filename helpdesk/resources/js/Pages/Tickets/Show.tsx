@@ -40,12 +40,12 @@ export default function TicketsShow({ ticket }: Props) {
                 </Link>
             )}
 
-            <Card>
+            <Card className='max-w-screen-xl w-full mx-auto'>
                 <CardHeader>
                     <CardTitle>Detalhes do Chamado</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <Column>
+                    <Column className="gap-2 sm:gap-4">
                         <Line>
                             <H3>Título:</H3>
                             <P>{ticket.title}</P>
@@ -65,15 +65,15 @@ export default function TicketsShow({ ticket }: Props) {
                             </Line>
                         </Line>
                         <Line className="w-full justify-between">
-                            <Column className="justify-center items-center">
+                            <Column className="justify-center items-center gap-2">
                                 <H3>Categoria</H3>
                                 <P>{getCategoryEnumLabel(ticket.category)}</P>
                             </Column>
-                            <Column className="justify-center items-center">
+                            <Column className="justify-center items-center gap-2">
                                 <H3>Prioridade</H3>
                                 <P>{getPriorityEnumLabel(ticket.priority)}</P>
                             </Column>
-                            <Column className="justify-center items-center">
+                            <Column className="justify-center items-center gap-2">
                                 <H3>Status</H3>
                                 <P>{getStatusEnumLabel(ticket.status)}</P>
                             </Column>
@@ -90,7 +90,7 @@ export default function TicketsShow({ ticket }: Props) {
                 </CardContent>
             </Card>
 
-            <Card className='mt-4'>
+            <Card className='mt-4 max-w-screen-xl w-full mx-auto'>
                 <CardHeader>
                     <CardTitle>Comentários ({ticket.comments?.length})</CardTitle>
                 </CardHeader>
@@ -98,7 +98,7 @@ export default function TicketsShow({ ticket }: Props) {
                     {ticket.comments?.length === 0 && (
                         <H4>Nenhum comentário encontrado</H4>
                     )}
-                    <ScrollColumn className="gap-2">
+                    <ScrollColumn className="gap-2 max-h-72">
                         {ticket.comments?.map(comment => (
                             <Comment key={comment.id} comment={comment} className='my-2' />
                         ))}
