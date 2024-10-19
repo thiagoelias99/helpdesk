@@ -27,7 +27,6 @@ return new class extends Migration {
             $table->foreign('priority')->references('priority')->on('priorities')->onDelete('cascade');
             $table->foreign('status')->references('status')->on('statuses')->onDelete('cascade');
 
-            $table->index(['user_id', 'technician_id', 'category', 'status', 'priority']);
         });
     }
 

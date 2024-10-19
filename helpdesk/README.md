@@ -1,66 +1,109 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<h1 align="center">Sistema Helpdesk - Aplicação Fullstack</h1> 
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<h3>Backend</h3>
+<a href="https://laravel.com/">
+  <img src="https://img.shields.io/badge/Laravel-000000?style=for-the-badge&logo=laravel&logoColor=FF2D20" />
+</a>
+<a href="https://www.php.net/">
+  <img src="https://img.shields.io/badge/PHP-000000?style=for-the-badge&logo=php&logoColor=777BB4" />
+</a>
+<a href="https://laravel.com/docs/8.x/sanctum">
+  <img src="https://img.shields.io/badge/Sanctum-000000?style=for-the-badge&logo=laravel&logoColor=FF2D20" />
+</a>
+<a href="https://laravel.com/docs/8.x/starter-kits#laravel-breeze">
+  <img src="https://img.shields.io/badge/Breeze-000000?style=for-the-badge&logo=laravel&logoColor=FF2D20" />
+</a>
+<a href="https://laravel.com/docs/eloquent">
+  <img src="https://img.shields.io/badge/Eloquent-000000?style=for-the-badge&logo=laravel&logoColor=FF2D20" />
+</a>
+<a href="https://www.mysql.com/">
+  <img src="https://img.shields.io/badge/MySQL-000000?style=for-the-badge&logo=mysql&logoColor=4479A1" />
+</a>
+<a href="https://www.docker.com/">
+  <img src="https://img.shields.io/badge/Docker-000000?style=for-the-badge&logo=docker&logoColor=2496ED" />
+</a>
+</p>
+<p align="center">
+<h3>Frontend</h3>
+<a href="https://reactjs.org/">
+  <img src="https://img.shields.io/badge/React-000000?style=for-the-badge&logo=react" />
+</a>
+<a href="https://inertiajs.com/">
+  <img src="https://img.shields.io/badge/Inertia.js-000000?style=for-the-badge&logo=inertia&logoColor=white" />
+</a>
+<a href="https://vitejs.dev/">
+  <img src="https://img.shields.io/badge/Vite-000000?style=for-the-badge&logo=vite" />
+</a>
+<a href="https://www.typescriptlang.org">
+<img src="https://img.shields.io/badge/TypeScript-black?style=for-the-badge&logo=typescript" />
+</a>
+<a href="https://github.com/colinhacks/zod">
+  <img src="https://img.shields.io/badge/Zod-black?style=for-the-badge&logo=zod"/>
+</a>
+<a href="https://tailwindcss.com/">
+  <img src="https://img.shields.io/badge/Tailwind%20CSS-000000?style=for-the-badge&logo=tailwind-css" />
+</a>
+<a href="https://github.com/colinhacks/zod">
+  <img src="https://img.shields.io/badge/ShadCn%20ui-000000?style=for-the-badge&logo=shadcnui"/>
+</a>
 </p>
 
-## About Laravel
+Aplicações fullstack monolítica no padrão **MVC** criada com **Laravel/php** como controllador, **Inertia/React** como templates e banco de dados **mySql**. Simula um sistema de atendimento e suporte popularmente chamado de HelpDesk. O objetivo principal do projeto é a prática do uso do Framework Laravel com integração a outras aplicações e sistemas.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Concepção
+- Decidi utilizar o framework Laravel como backend, devido a sua ideologia e facilidades nativas que permitem a construção de aplicações seguras e escaláveis de maneira padronizada.
+- Como template escolhi o Inertia.js que utiliza o React com que já tenho experiência de trabalho. O Inertia possibilita grande e compatibilidade com o Laravel, possuindo funções auxiliares para melhor experiência de integração.
+- Foi utilizado o Breeze como projeto inicial, o qual já vem com um sistema de autenticação por email nativo. Mas sustituí toda a interface original por componentes da biblioteca ShadcnUI com Tailwind css, mantendo todas as funcionalidade originais.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### **Funcionalidades || Cases**
+- **Cadastro de Usuário**: Os usuários devem poder se registrar e criar uma conta no sistema.
+- **Criação de Chamados**: Um usuário pode criar um chamado informando um título, descrição, categoria e prioridade.
+- **Visualização de chamados**: Um usuário só pode ter acessos aos seus chamados. Agente e administrador podem ter acesso a qualquer chamado.
+- **Atribuição de Chamados**: O sistema deve permitir que chamados sejam atribuídos somente a agentes de suporte.
+- **Atualização de Status**: Os agentes devem poder alterar o status do chamado ao longo do processo de resolução.
+- **Histórico de Chamados**: Tanto os usuários quanto os agentes devem poder visualizar o histórico de chamados criados/resolvidos.
+- **Comentários**: Usuários e agentes podem adicionar comentários aos chamados para troca de informações.
+- **Permissões**: Somente um administrador pode alterar as permissões da aplicação.
+- **Conta**: Qualquer usuário pode excluir todos os seus dados pessoais do sistema.
+- **Temas**: O usuário poderá escolher tema claro ou escuro.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### **Galeria de imagens**
+<p align="center">
+  <img src="..\docs\imgs\login-dark.png" width="350" />
+  <img src="..\docs\imgs\tickets-show-user.png" width="350" />
+  <img src="..\docs\imgs\profile-dark.png" width="350" />
+</p>
+<p align="center">
+  <img src="..\docs\imgs\tickets-index-admin.png" width="350" />
+  <img src="..\docs\imgs\users-index.png" width="350" />
+  <img src="..\docs\imgs\profile-light.png" width="350" />
+</p>
 
-## Learning Laravel
+### **Instalação do Projeto**
+#### **Requerimentos**
+- [Php v8.3+](https://www.php.net/)
+- [PhpComposer](https://getcomposer.org/)
+- [Node.js v20+](https://nodejs.org/en)
+- [Docker](https://www.docker.com/)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#### Execução do projeto
+- Fazer cópia do repositório.
+- Acessar a pasta do projeto fullstack ```cd helpdesk```
+- Fazer cópia do arquivo ***.env*** ```cp .env.example .env```
+    - Se necessário fazer alteração das informações padrão de conexão ao banco de dados
+        - DB_CONNECTION=mysql
+        - DB_HOST=127.0.0.1
+        - DB_PORT=3306
+        - DB_DATABASE=helpdesk
+        - DB_USERNAME=root
+        - DB_PASSWORD=root
+- Na pasta raiz do projeto executar os comandos 
+    1. ```composer install``` -> Instalação das dependências php
+    2. ```npm install``` -> Instalação das dependências node
+    3. ```composer example``` -> Iniciar o projeto
+- Acessar o sistema por padrão no endereço [http://localhost:8000/](http://localhost:8000/)
+    - Para acessar o sistema com administrador utilizar as credenciais:
+        - email: ```admin@email.com```
+        - senha: ```Abcd@1234```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

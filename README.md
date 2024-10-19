@@ -10,6 +10,9 @@
 <a href="https://inertiajs.com/">
   <img src="https://img.shields.io/badge/Inertia.js-000000?style=for-the-badge&logo=inertia&logoColor=white" />
 </a>
+<a href="https://expo.dev/">
+  <img src="https://img.shields.io/badge/Expo-000000?style=for-the-badge&logo=expo&logoColor=white" />
+</a>
 <a href="https://www.php.net/">
   <img src="https://img.shields.io/badge/PHP-000000?style=for-the-badge&logo=php&logoColor=777BB4" />
 </a>
@@ -28,8 +31,10 @@ Conjunto de aplicações fullstack desenvolvida para aprimoração de conhecimen
 
 ### **Aplicações**
 - **Fullstack** - [Link](https://github.com/thiagoelias99/helpdesk/tree/main/helpdesk) - Uma aplicação fullstack monolítica no padrão **MVC** criada com **Laravel/php** como controllador, **Inertia/React** como templates e banco de dados **mySql**.
+- **Api** - (*em desenvolvimento*) - Api derivada da aplicação fullstack para permitir acesso por outros sistemas e aplicações, criada com **Laravel/php**.
+- **Mobile** - (*em desenvolvimento*) - Uma aplicação mobile para **android e iOS**, desenvolvida com **Expo React Native**, permitindo as mesmas interações da aplicação fullstack por meio de APi.
 
-### **Imagens**
+### **Galeria de Imagens**
 <p align="center">
 <img src="./docs/imgs/login-dark.png" width="480px" height="320px"/>
 </p>
