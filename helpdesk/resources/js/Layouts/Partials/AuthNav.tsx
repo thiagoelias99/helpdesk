@@ -5,6 +5,7 @@ import { Link, usePage } from '@inertiajs/react'
 import { Sheet, SheetContent, SheetTrigger } from '@/Components/ui/sheet'
 import { Button } from '@/Components/ui/button'
 import { MenuIcon } from 'lucide-react'
+import { Description, DialogTitle } from '@radix-ui/react-dialog'
 
 interface Props {
     currentUrl?: string
@@ -53,7 +54,8 @@ export default function AuthNav({ currentUrl: url, links = [] }: Props) {
                         <span className="sr-only">Fechar menu de navegação</span>
                     </Button>
                 </SheetTrigger>
-                <SheetContent side="left">
+                <SheetContent side="left" aria-describedby='menu'>
+                    <DialogTitle className='sr-only'>Menu</DialogTitle>
                     <nav className="grid text-lg font-medium">
                         <Link
                             href="#"

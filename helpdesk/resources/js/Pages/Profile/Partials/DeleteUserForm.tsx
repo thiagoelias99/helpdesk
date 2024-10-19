@@ -1,6 +1,3 @@
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import TextInput from '@/Components/TextInput';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/Components/ui/alert-dialog';
 import { Button } from '@/Components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/Components/ui/card';
@@ -53,7 +50,7 @@ export default function DeleteUserForm({
                 </CardHeader>
                 <CardContent>
                     <AlertDialog>
-                        <AlertDialogTrigger>
+                        <AlertDialogTrigger asChild>
                             <Button
                                 variant="destructive"
                                 isLoading={processing}

@@ -1,15 +1,12 @@
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
 import { Button, buttonVariants } from '@/Components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/Components/ui/card';
 import FlashMessage from '@/Components/ui/flash-message';
 import { Input } from '@/Components/ui/input';
 import { Label } from '@/Components/ui/label';
-import { Caption, CaptionError, P } from '@/Components/ui/typography';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/Components/ui/select';
+import { Caption, CaptionError } from '@/Components/ui/typography';
+import useTheme from '@/hooks/useTheme';
 import { laravelMessageMapper } from '@/lib/error.mapper';
-import { Transition } from '@headlessui/react';
 import { Link, useForm, usePage } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 
@@ -23,6 +20,7 @@ export default function UpdateProfileInformation({
     className?: string;
 }) {
     const user = usePage().props.auth.user;
+    const { theme, setTheme, themeOptions } = useTheme();
 
     const { data, setData, patch, errors, processing, recentlySuccessful } =
         useForm({
@@ -73,6 +71,28 @@ export default function UpdateProfileInformation({
                             />
 
                             <CaptionError>{laravelMessageMapper(errors.email)}</CaptionError>
+                        </div>
+                        <div>
+                            <Label>Tema</Label>
+
+                            <Select
+                                defaultValue={theme}
+                                onValueChange={(value) => setTheme(value as 'light' | 'dark' | 'system')}
+                            >
+                                <SelectTrigger className="w-[180px]">
+                                    <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {themeOptions.map((option) => (
+                                        <SelectItem
+                                            key={option.value}
+                                            value={option.value}
+                                        >
+                                            {option.label}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
                         </div>
 
                         {mustVerifyEmail && user.email_verified_at === null && (

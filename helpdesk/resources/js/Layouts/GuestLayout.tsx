@@ -1,9 +1,12 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { Card } from '@/Components/ui/card';
+import useTheme from '@/hooks/useTheme';
 import { Link } from '@inertiajs/react';
 import { PropsWithChildren } from 'react';
 
 export default function Guest({ children }: PropsWithChildren) {
+    const {} = useTheme();
+
     return (
         <div className="flex min-h-screen flex-col items-center bg-background pt-6 sm:justify-center sm:pt-0">
             <div>
