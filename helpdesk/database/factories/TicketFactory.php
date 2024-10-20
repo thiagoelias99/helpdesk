@@ -17,14 +17,14 @@ class TicketFactory extends Factory
     public function definition(): array
     {
         return [
-            "title" => $this->faker->sentence(),
-            "description" => $this->faker->paragraph(),
-            "user_id" => $this->faker->numberBetween(1, 10),
-            "technician_id" => $this->faker->numberBetween(1, 10),
-            "category" => array_rand(array_flip(['hardware', 'software', 'network', "security", 'other'])),
-            "priority" => array_rand(array_flip(['low', 'medium', 'high', 'urgent'])),
-            "status" => array_rand(array_flip(['open', 'in_progress', 'scheduled', 'resolved', 'closed'])),
-            "created_at" => $this->faker->dateTimeBetween("-3 day"),
+            "title" => fake()->sentence(),
+            "description" => fake()->paragraph(),
+            "user_id" => fake()->numberBetween(1, 10),
+            "technician_id" => fake()->numberBetween(1, 10),
+            "category" => fake()->randomElement(['hardware', 'software', 'network', "security", 'other']),
+            "priority" => fake()->randomElement(['low', 'medium', 'high', 'urgent']),
+            "status" => fake()->randomElement(['open', 'in_progress', 'scheduled', 'resolved', 'closed']),
+            "created_at" => fake()->dateTimeBetween("-3 day"),
         ];
     }
 }
